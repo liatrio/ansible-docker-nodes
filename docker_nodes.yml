@@ -1,0 +1,4 @@
+- hosts: docker_nodes
+  sudo: yes
+  roles:
+    - role: docker
