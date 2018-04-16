@@ -1,4 +1,5 @@
 - hosts: docker_nodes
-  sudo: yes
+  become: yes
   roles:
     - role: docker
+    - role: docker-compose

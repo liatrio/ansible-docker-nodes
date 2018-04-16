@@ -1,0 +1,14 @@
+---
+- name: "docker-compose | get uname -s"
+  shell: uname -s
+  register: uname_s
+
+- name: "docker-compose | get uname -m"
+  shell: uname -m
+  register: uname_m
+
+- name: "Download docker-compose"
+  get_url:
+    url: https://github.com/docker/compose/releases/download/1.21.0/docker-compose-{{ uname_s.stdout }}-{{ uname_m.stdout }}
+    dest: /usr/local/bin/docker-compose
+    mode: 0755
