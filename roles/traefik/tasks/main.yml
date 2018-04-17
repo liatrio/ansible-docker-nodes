@@ -1,0 +1,20 @@
+---
+- name: "traefik | make traefik directory"
+  file:
+    path: /home/ec2-user/traefik
+    state: directory
+    owner: ec2-user
+    group: ec2-user
+    mode: 0755
+
+- name: "traefik | copy traefik docker compose"
+  copy:
+    src: docker-compose.yml
+    dest: /home/ec2-user/traefik
+    owner: ec2-user
+    group: ec2-user
+    mode: 0664
+
+- name: "traefik | spin up traefik"
+  shell: docker-compose -f /home/ec2-user/traefik/docker-compose.yml up -d
+  become_user: ec2-user
